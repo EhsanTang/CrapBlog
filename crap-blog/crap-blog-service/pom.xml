@@ -23,11 +23,6 @@
   		<artifactId>crap-blog-dao</artifactId>
   		<version>${project.version}</version>
   	</dependency>
-  	<dependency>
-  		<groupId>cn.crap</groupId>
-  		<artifactId>crap-blog-common</artifactId>
-  		<version>${project.version}</version>
-  	</dependency>
   	<!-- 服务端依赖end -->
   	
   	<dependency>

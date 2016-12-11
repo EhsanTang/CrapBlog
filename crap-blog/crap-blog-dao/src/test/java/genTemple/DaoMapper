@@ -7,5 +7,6 @@ import org.apache.ibatis.annotations.Param;
 import cn.crap.blog.domain.dao.%s;
 
 public interface %sMapper {
-	List<%s> selectByIds(@Param(value="ids") List<Long> ids);
+	List<%s> selectByIds(List<Long> ids);
+	
 }

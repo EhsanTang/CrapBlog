@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="fileErrorCodeInstall" class="cn.crap.common.framework.service.impl.FileErrorCodeInstall">
+		<property name="errorCode">
+			<map>
+				<entry key="000001" value="系统未知错误" />
+				<entry key="000005" value="系统访问过于频繁" />
+				<entry key="200002" value="参数不完整" />
+				
+				<entry key="200003" value="修改的数据条数和参数中个数不一致" />
+				
+				<!-- 超时赔付编码 801开始-->
+				<entry key="801002" value="订单号或赔付单号有误" />
+				<entry key="801003" value="当前状态不允许人工创建超时赔付" />
+			</map>
+		</property>
+	</bean>
+
+</beans>

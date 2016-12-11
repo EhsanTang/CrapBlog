@@ -10,6 +10,7 @@
   		<module>crap-blog-dao</module>
   		<module>crap-blog-service</module>
   		<module>crap-blog-domain</module>
+  		<module>crap-blog-web</module>
   	</modules>
   
   	<properties>
@@ -79,11 +80,11 @@
 			<artifactId>commons-pool2</artifactId>
 			<version>2.2</version>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>sqljdbc4</artifactId>
 			<version>4.0</version>
-		</dependency>
+		</dependency> -->
 		<dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
