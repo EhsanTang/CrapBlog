@@ -10,5 +10,6 @@ public interface ISettingDao {
 	public int update(Setting t);
 	public int delete(long id);
 	public Setting get(long id);
+	
 	List<Setting> selectByIds(List<Long> ids);
 }
