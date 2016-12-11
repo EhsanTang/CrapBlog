@@ -1,0 +1,9 @@
+package cn.crap.blog.service;
+
+import java.util.List;
+
+import cn.crap.blog.domain.dao.Setting;
+
+public interface I%sService {
+List<%s> selectByIds(List<Long> ids);
+}
