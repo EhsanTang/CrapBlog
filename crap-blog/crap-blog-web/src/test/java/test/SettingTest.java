@@ -16,7 +16,7 @@ import cn.crap.blog.service.ISettingService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations="classpath:applicationContext.xml")
-public class OrderBaseTest {
+public class SettingTest {
 	@Autowired
 	ISettingService service;
 	
