@@ -5,19 +5,38 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-import cn.crap.blog.dao.I%sDao;
-import cn.crap.blog.dao.mapper.%sMapper;
-import cn.crap.blog.domain.dao.%s;
+import cn.crap.blog.dao.I_DEMAIN_Dao;
+import cn.crap.blog.dao.mapper._DEMAIN_Mapper;
+import cn.crap.blog.domain.dao._DEMAIN_;
 
 @Service
-public class SettingDao implements I%sDao{
+public class _DEMAIN_Dao implements I_DEMAIN_Dao{
 	
 	@Autowired
-	private %sMapper mapper;
+	private _DEMAIN_Mapper mapper;
 	
 	@Override
-	public List<%s> selectByIds(List<Long> ids) {
+	public List<_DEMAIN_> selectByIds(List<Long> ids) {
 		return mapper.selectByIds(ids);
+	}
+
+	@Override
+	public int save(_DEMAIN_ t) {
+		return mapper.save(t);
+	}
+
+	@Override
+	public int update(_DEMAIN_ t) {
+		return mapper.update(t);
+	}
+
+	@Override
+	public int delete(long id) {
+		return mapper.delete(id);
+	}
+
+	@Override
+	public _DEMAIN_ get(long id) {
+		return mapper.get(id);
 	}
 }

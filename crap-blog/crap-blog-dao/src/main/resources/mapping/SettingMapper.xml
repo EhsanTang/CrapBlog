@@ -15,12 +15,64 @@
 </resultMap>
 
 <sql id="Base_Column_List">
-	mkey,value,remark,createTime,status,type,canDelete,sequence,id
+	mkey,value,remark,createTime,status,type,canDelete,sequence
 </sql>
 
+<!-- 插入数据 -->
+<insert id="save" parameterType="cn.crap.blog.domain.dao.Setting">
+	insert into setting
+		(mkey,value,remark,createTime,status,type,canDelete,sequence) 
+		values(#{mkey},#{value},#{remark},now(),#{status},#{type},#{candelete},#{sequence})
+</insert>
+<!-- 删除数据 -->
+<delete id="delete" parameterType="java.lang.Long">
+    delete from setting where id = #{id}
+</delete>
+<!-- 更新数据 -->
+<update id="update" parameterType="cn.crap.blog.domain.dao.Setting">
+    update setting
+    <set> 
+	<if test="mkey != null">
+		mkey=#{mkey},
+	</if>
+	<if test="value != null">
+		value=#{value},
+	</if>
+	<if test="remark != null">
+		remark=#{remark},
+	</if>
+	<if test="createtime != null">
+		createTime=#{createtime},
+	</if>
+	<if test="status != null">
+		status=#{status},
+	</if>
+	<if test="type != null">
+		type=#{type},
+	</if>
+	<if test="candelete != null">
+		canDelete=#{candelete},
+	</if>
+	<if test="sequence != null">
+		sequence=#{sequence},
+	</if>
+
+	</set>
+    where id=#{id}
+</update>
+<!-- GET数据 -->
+<select id="get" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from setting
+    where id = #{id}
+ </select>
+
+  
 <select id="selectByIds" parameterType="java.util.List" resultMap="BaseResultMap">
 	select
- 		<include refid="Base_Column_List" />from setting where id in 
+ 		<include refid="Base_Column_List" />
+ 		from setting where id in 
 		<foreach collection="list" index="index" item="item" open="(" separator="," close=")">
 			#{item}
 		</foreach>

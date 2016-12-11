@@ -11,53 +11,71 @@ public class CenFile {
   private static String templePath = "test.java.genTemple";
   public static String processIDao(String tableName) throws IOException {
 		 StringBuilder sb = readTemple("IDao");
-		 return String.format(sb.toString(), initcap(tableName), initcap(tableName));
+		 return sb.toString().replaceAll("_DEMAIN_", initcap(tableName));
   }
   
   public static String processDaoImp(String tableName) throws IOException {
 		 StringBuilder sb = readTemple("DaoImp");
-		 return String.format(sb.toString(), 
-				 initcap(tableName), initcap(tableName), initcap(tableName),
-				 initcap(tableName), initcap(tableName), initcap(tableName));
+		 return sb.toString().replaceAll("_DEMAIN_", initcap(tableName));
   }
 
   public static String processDaoMapper(String tableName) throws IOException {
 		 StringBuilder sb = readTemple("DaoMapper");
-		 return String.format(sb.toString(), initcap(tableName), initcap(tableName), initcap(tableName));
+		 return sb.toString().replaceAll("_DEMAIN_", initcap(tableName));
  }
   
 	public static String processMapper(String tableName) throws FileNotFoundException, IOException {
 		 StringBuilder sb = readTemple("Mapper");
 		
-		 StringBuilder temple = new StringBuilder();
+		 // 列
+		 StringBuilder colnames = new StringBuilder();
 		 for (int i = 0; i < GenEntityUtil.colnames.length; i++) {
-			 temple.append(" <result column=\""+GenEntityUtil.tablecolnames[i]+"\" jdbcType=\""+sqlType2MybatisType(GenEntityUtil.colTypes[i])+"\" property=\""+GenEntityUtil.colnames[i]+"\" />\r\n");
+			 colnames.append(" <result column=\""+GenEntityUtil.tablecolnames[i]+"\" jdbcType=\""+sqlType2MybatisType(GenEntityUtil.colTypes[i])+"\" property=\""+GenEntityUtil.colnames[i]+"\" />\r\n");
 		 }
-		 String colnames = temple.toString();
 		
-		 temple = new StringBuilder();
+		 // 插入
+		 StringBuilder colnamesStr = new StringBuilder();
+		 StringBuilder fieldsStr = new StringBuilder();
 		 for (int i = 0; i < GenEntityUtil.tablecolnames.length; i++) {
-			 temple.append(GenEntityUtil.tablecolnames[i]+",");
+			 if(GenEntityUtil.tablecolnames[i].equals("id"))
+				 continue;
+			 if( !GenEntityUtil.tablecolnames[i].equals("createTime")){
+				 colnamesStr.append(GenEntityUtil.tablecolnames[i]+",");
+				 fieldsStr.append("#{"+GenEntityUtil.colnames[i]+"},");
+			 }else{
+				 colnamesStr.append(GenEntityUtil.tablecolnames[i]+",");
+				 fieldsStr.append("now(),");
+			 }
 		 }
-		 if( temple.length() > 0)
-			 temple.delete( temple.length()-1, temple.length());
+		 if( colnamesStr.length() > 0)
+			 colnamesStr.delete( colnamesStr.length()-1, colnamesStr.length());
+		 if( fieldsStr.length() > 0)
+			 fieldsStr.delete( fieldsStr.length()-1, fieldsStr.length());
 		 
-		 return String.format(sb.toString(), initcap(tableName), initcap(tableName), 
-				 colnames, temple.toString(), tableName);
+		 StringBuilder updateStr = new StringBuilder();
+		 // 更新
+		 for (int i = 0; i < GenEntityUtil.tablecolnames.length; i++) {
+			 if(GenEntityUtil.tablecolnames[i].equals("id"))
+				 continue;
+			 updateStr.append("\t<if test=\"" + GenEntityUtil.colnames[i] + " != null\">\r\n\t\t"+ GenEntityUtil.tablecolnames[i] + "=#{"+  GenEntityUtil.colnames[i] +"},\r\n\t</if>\r\n");
+		 }
+//		 if( updateStr.length() > 0)
+//			 updateStr.delete( updateStr.length()-11, updateStr.length()-10);
+//				 
+		 return String.format(sb.toString(),  colnames.toString(), colnamesStr.toString(), colnamesStr.toString(), fieldsStr.toString(), updateStr.toString()).
+				 replaceAll("_DEMAIN_", initcap(tableName)).replaceAll("_TABLE_", tableName);
   }
 
   
   public static String processIService(String tableName) throws FileNotFoundException, IOException {
 	  StringBuilder sb = readTemple("IService");
-	  return String.format(sb.toString(), initcap(tableName), initcap(tableName));
+	  return sb.toString().replaceAll("_DEMAIN_", initcap(tableName));
   }
   
   public static String processServiceImp(String tableName) throws FileNotFoundException, IOException {
 	  StringBuilder sb = readTemple("ServiceImp");
-	  return String.format(sb.toString(), initcap(tableName), initcap(tableName), initcap(tableName), initcap(tableName),
-			  initcap(tableName), initcap(tableName), initcap(tableName), initcap(tableName));
-  }
-  
+	  return sb.toString().replaceAll("_DEMAIN_", initcap(tableName));
+}
   
   public static String processDomain(String tableName) throws FileNotFoundException, IOException {
 	    StringBuilder sb = readTemple("Domain");
@@ -136,22 +154,22 @@ public class CenFile {
 	}
 	public static String sqlType2JavaType(String sqlType) {
 		if (sqlType.equalsIgnoreCase("bit")) {
-			return "boolean";
+			return "Boolean";
 		} else if (sqlType.equalsIgnoreCase("tinyint")) {
-			return "byte";
+			return "Byte";
 		} else if (sqlType.equalsIgnoreCase("smallint")) {
-			return "short";
+			return "Short";
 		} else if (sqlType.equalsIgnoreCase("int") || sqlType.equalsIgnoreCase("integer")) {
-			return "int";
+			return "Integer";
 		} else if (sqlType.equalsIgnoreCase("bigint")) {
-			return "long";
+			return "Long";
 		} else if (sqlType.equalsIgnoreCase("float")) {
-			return "float";
+			return "Float";
 		} else if (sqlType.equalsIgnoreCase("decimal") || sqlType.equalsIgnoreCase("numeric")
 				|| sqlType.equalsIgnoreCase("real")) {
-			return "double";
+			return "Double";
 		} else if (sqlType.equalsIgnoreCase("money") || sqlType.equalsIgnoreCase("smallmoney")) {
-			return "double";
+			return "Double";
 		} else if (sqlType.equalsIgnoreCase("varchar") || sqlType.equalsIgnoreCase("char")
 				|| sqlType.equalsIgnoreCase("nvarchar") || sqlType.equalsIgnoreCase("nchar")) {
 			return "String";

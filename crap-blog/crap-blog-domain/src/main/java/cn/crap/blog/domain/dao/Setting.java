@@ -4,11 +4,11 @@ public class Setting{
 	private String value;
 	private String remark;
 	private String createtime;
-	private byte status;
+	private Byte status;
 	private String type;
-	private byte candelete;
-	private int sequence;
-	private long id;
+	private Byte candelete;
+	private Integer sequence;
+	private Long id;
 
 	public void setMkey(String mkey){
 		this.mkey=mkey;
@@ -38,10 +38,10 @@ public class Setting{
 		return createtime;
 	}
 
-	public void setStatus(byte status){
+	public void setStatus(Byte status){
 		this.status=status;
 	}
-	public byte getStatus(){
+	public Byte getStatus(){
 		return status;
 	}
 
@@ -52,24 +52,24 @@ public class Setting{
 		return type;
 	}
 
-	public void setCandelete(byte candelete){
+	public void setCandelete(Byte candelete){
 		this.candelete=candelete;
 	}
-	public byte getCandelete(){
+	public Byte getCandelete(){
 		return candelete;
 	}
 
-	public void setSequence(int sequence){
+	public void setSequence(Integer sequence){
 		this.sequence=sequence;
 	}
-	public int getSequence(){
+	public Integer getSequence(){
 		return sequence;
 	}
 
-	public void setId(long id){
+	public void setId(Long id){
 		this.id=id;
 	}
-	public long getId(){
+	public Long getId(){
 		return id;
 	}
 

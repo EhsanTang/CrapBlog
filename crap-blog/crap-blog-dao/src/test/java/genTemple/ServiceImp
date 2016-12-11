@@ -6,19 +6,38 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cn.crap.blog.dao.imp.%sDao;
-import cn.crap.blog.domain.dao.%s;
-import cn.crap.blog.service.I%sService;
+import cn.crap.blog.dao.imp._DEMAIN_Dao;
+import cn.crap.blog.domain.dao._DEMAIN_;
+import cn.crap.blog.service.I_DEMAIN_Service;
+
 @Service
-public class %sService implements I%sService{
+public class _DEMAIN_Service implements I_DEMAIN_Service{
 
 	@Autowired
-	private %sDao dao;
+	private _DEMAIN_Dao dao;
+	
 	@Override
-	public List<%s> selectByIds(List<Long> ids) {
-		if(ids == null || ids.size() == 0){
-			return new ArrayList<%s>();
-		}
+	public List<_DEMAIN_> selectByIds(List<Long> ids) {
 		return dao.selectByIds(ids);
+	}
+
+	@Override
+	public int save(_DEMAIN_ t) {
+		return dao.save(t);
+	}
+
+	@Override
+	public int update(_DEMAIN_ t) {
+		return dao.update(t);
+	}
+
+	@Override
+	public int delete(long id) {
+		return dao.delete(id);
+	}
+
+	@Override
+	public _DEMAIN_ get(long id) {
+		return dao.get(id);
 	}
 }

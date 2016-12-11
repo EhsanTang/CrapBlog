@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import cn.crap.blog.domain.dao.%s;
+import cn.crap.blog.domain.dao._DEMAIN_;
 
-public interface %sMapper {
-	List<%s> selectByIds(List<Long> ids);
-	
+public interface _DEMAIN_Mapper {
+	public int save(_DEMAIN_ t);
+	public int update(_DEMAIN_ t);
+	public int delete(@Param("id") long id);
+	public _DEMAIN_ get(@Param("id") long id);
+	List<_DEMAIN_> selectByIds(List<Long> ids);
 }

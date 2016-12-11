@@ -7,6 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import cn.crap.blog.domain.dao.Setting;
 
 public interface SettingMapper {
-	//List<Setting> selectByIds(@Param(value="ids") List<Long> ids);
+	public int save(Setting t);
+	public int update(Setting t);
+	public int delete(@Param("id") long id);
+	public Setting get(@Param("id") long id);
 	List<Setting> selectByIds(List<Long> ids);
 }

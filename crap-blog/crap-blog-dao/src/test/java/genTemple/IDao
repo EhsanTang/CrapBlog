@@ -3,8 +3,12 @@ package cn.crap.blog.dao;
 
 import java.util.List;
 
-import cn.crap.blog.domain.dao.Setting;
+import cn.crap.blog.domain.dao._DEMAIN_;
 
-public interface I%sDao {
-	List<%s> selectByIds(List<Long> ids);
+public interface I_DEMAIN_Dao {
+	public int save(_DEMAIN_ t);
+	public int update(_DEMAIN_ t);
+	public int delete(long id);
+	public _DEMAIN_ get(long id);
+	List<_DEMAIN_> selectByIds(List<Long> ids);
 }
