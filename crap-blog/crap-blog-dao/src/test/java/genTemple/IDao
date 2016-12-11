@@ -1,0 +1,10 @@
+package cn.crap.blog.dao;
+
+
+import java.util.List;
+
+import cn.crap.blog.domain.dao.Setting;
+
+public interface I%sDao {
+	List<%s> selectByIds(List<Long> ids);
+}

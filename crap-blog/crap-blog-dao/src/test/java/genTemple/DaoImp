@@ -1,0 +1,23 @@
+package cn.crap.blog.dao.imp;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
+import cn.crap.blog.dao.I%sDao;
+import cn.crap.blog.dao.mapper.%sMapper;
+import cn.crap.blog.domain.dao.%s;
+
+@Service
+public class SettingDao implements I%sDao{
+	
+	@Autowired
+	private %sMapper mapper;
+	
+	@Override
+	public List<%s> selectByIds(List<Long> ids) {
+		return mapper.selectByIds(ids);
+	}
+}
